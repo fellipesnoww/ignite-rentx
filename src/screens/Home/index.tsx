@@ -8,7 +8,8 @@ import {
     Container,
     Header,
     HeaderContent,
-    TotalCars
+    TotalCars,
+    CarList,
 } from './styles';
 
 import { Car } from '../../components/Car';
@@ -36,14 +37,12 @@ export function Home(){
               <TotalCars>Total de 12 Carros</TotalCars>
             </HeaderContent>
           </Header>
-          <Car data={carData}/>
-          <Car data={carData}/>
-          <Car data={carData}/>
-          <Car data={carData}/>
-          <Car data={carData}/>
-          <Car data={carData}/>
-          <Car data={carData}/>
-
+          <CarList
+            data={[1,2,3]}
+            keyExtractor={item => String(item)}
+            renderItem={({ item }) => <Car data={carData}/>}
+          />
+          
       </Container>
   );
 } 
