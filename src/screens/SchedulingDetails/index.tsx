@@ -40,9 +40,25 @@ import {
 } from './styles';
 import { Button } from '../../components/Button';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+
+type RootStackParamList = {
+  SchedulingComplete: undefined
+}
+
+type SchedulingCompleteScreenNavigationProp = StackNavigationProp<RootStackParamList, 
+'SchedulingComplete'>;
 
 export function SchedulingDetails(){
   const theme = useTheme();  
+
+  const navigation = useNavigation<SchedulingCompleteScreenNavigationProp>();
+  
+    function handleSchedulingComplete(){
+        navigation.navigate('SchedulingComplete');
+    }
+
   return (
       <Container>
         <Header>
@@ -108,7 +124,7 @@ export function SchedulingDetails(){
 
         </Content>
         <Footer>
-          <Button title="Confirmar"/>
+          <Button title="Confirmar" onPress={handleSchedulingComplete}/>
         </Footer>
       </Container>
   );

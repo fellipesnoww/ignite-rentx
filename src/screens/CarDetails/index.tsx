@@ -27,10 +27,24 @@ import {
     Accessories,
     Footer
 } from './styles';
+
 import { Button } from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type RootStackParamList = {
+  Scheduling: undefined
+}
+
+type CarDetailsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Scheduling'>;
 
 export function CarDetails(){
+  const navigation = useNavigation<CarDetailsScreenNavigationProp>();
   
+  function handleCalendar(){
+    navigation.navigate('Scheduling');
+  }
+
   return (
       <Container>
         <Header>
@@ -66,7 +80,7 @@ export function CarDetails(){
           </About>
         </Content>
         <Footer>
-          <Button title="Confirmar"/>
+          <Button title="Confirmar" onPress={handleCalendar}/>
         </Footer>
       </Container>
   );
