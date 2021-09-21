@@ -28,5 +28,15 @@ ou utilizando o yarn
 - [Veja o layout 📲](https://www.figma.com/file/0rnv2It0c8luzmluwYMksh/RentX-Ignite-(Copy)?node-id=0%3A1)
 
 ## Aprendizado
+- Utilização de React Native com Typescript;
+- Utilização do Expo (Bare Workflow);
+- Utilização de Styled Components;
+    - Criação de temas;
+    - Acesso a propriedades;
+    - Criação de componentes dinâmicos;
+- Navegação em Stack;
+- Utilização de SVG;
+- Utilização da lib _calendars_ para criar componente de calendário;
+- Utilização da lib json-server para criar uma api;
 
 ## Exemplo em execução
