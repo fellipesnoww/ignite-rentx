@@ -124,7 +124,11 @@ export function SchedulingDetails(){
 
         </Content>
         <Footer>
-          <Button title="Confirmar" onPress={handleSchedulingComplete}/>
+          <Button 
+            title="Alugar agora" 
+            onPress={handleSchedulingComplete}
+            color={theme.colors.success}
+          />
         </Footer>
       </Container>
   );

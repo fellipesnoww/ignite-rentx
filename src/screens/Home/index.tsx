@@ -34,11 +34,9 @@ export function Home(){
       price: 120
     },
     thumbnail: 'https://img1.gratispng.com/20180331/izq/kisspng-audi-rs-6-audi-rs6-audi-a6-car-audi-5abf3cdc8a3545.0356772815224823965661.jpg'
-  }
+  };
 
-
-  function handleCarDetails() {
-    console.log('asoejopaseijsaeoisajeoi')
+  function handleCarDetails() {    
     navigation.navigate('CarDetails');
   }
 
