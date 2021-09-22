@@ -38,5 +38,6 @@ ou utilizando o yarn
 - Utilização de SVG;
 - Utilização da lib _calendars_ para criar componente de calendário;
 - Utilização da lib json-server para criar uma api;
+- Utilização da lib axios para realização de requisições a uma api;
 
 ## Exemplo em execução

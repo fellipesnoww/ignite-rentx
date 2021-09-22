@@ -15,15 +15,14 @@ import {
     TotalCars,
     CarList,
 } from './styles';
+
 import { Load } from '../../components/Load';
 
 type RootStackParamList = {
-  CarDetails: undefined
+  CarDetails: undefined  
 }
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CarDetails'> ;
-
-
 
 export function Home(){
   const [cars, setCars] = useState<CarDTO[]>([]);
@@ -31,8 +30,8 @@ export function Home(){
 
   const navigation = useNavigation<HomeScreenNavigationProp>();    
 
-  function handleCarDetails() {    
-    navigation.navigate('CarDetails');
+  function handleCarDetails(car: CarDTO) {    
+    navigation.navigate('CarDetails', { car });
   }
   
   useEffect(() => {
@@ -61,7 +60,7 @@ export function Home(){
           <Header>
             <HeaderContent>
               <Logo width={RFValue(108)} height={RFValue(12)}/>
-              <TotalCars>Total de 12 Carros</TotalCars>
+              <TotalCars>Total de {cars.length} Carros</TotalCars>
             </HeaderContent>
           </Header>
           { loading 
@@ -73,7 +72,7 @@ export function Home(){
               renderItem={({ item }) => 
                 <Car 
                   data={item}
-                  onPress={handleCarDetails}
+                  onPress={() => handleCarDetails(item)}
                 />
               }
             />
