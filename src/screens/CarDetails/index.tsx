@@ -45,7 +45,7 @@ export function CarDetails(){
   const { car } = route.params as Params;
 
   function handleCalendar(){
-    navigation.navigate('Scheduling');
+    navigation.navigate('Scheduling', {car});
   }
 
   function handleBack(){
