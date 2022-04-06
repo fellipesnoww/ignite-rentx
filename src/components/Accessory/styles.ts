@@ -2,8 +2,8 @@ import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
-  width: 111px;
-  height: 92px;
+  width: 90px;
+  height: 90px;
 
   justify-content: center;
   align-items: center;
@@ -19,4 +19,5 @@ export const Name = styled.Text`
     font-family: ${({ theme }) => theme.fonts.primary_500};
     color: ${({ theme }) => theme.colors.text};
     font-size: ${RFValue(13)}px;
+    text-align: center;
 `;
