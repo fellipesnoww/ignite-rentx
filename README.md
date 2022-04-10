@@ -17,6 +17,37 @@ ou utilizando o yarn
 ```bash
     yarn
 ```
+
+Abra uma nova janela do seu terminal e execute o seguinte comando para disponibilizar  a api para o app:
+
+**Você precisa alterar o IP da api para seu IP local no _package.json_ e em _./src/services/api.ts_**
+
+Exemplo:
+
+_package.json_
+``` json
+...
+    "api": "json-server ./src/services/server.json --host **Seu IP** --port 3333 --delay 700"
+...
+```
+
+_api.ts_
+``` js
+const api = axios.create({
+    baseURL: "**Seu IP**:3333",
+});
+```
+
+```bash
+ npm run api
+```
+
+ou utilizando o yarn
+
+```bash
+    yarn api
+```
+
 - Após instalada todas as depedências do projeto será necessário ter o Expo instalado em sua máquina, [cheque aqui a documentação do Expo 😎](https://docs.expo.io/);
 - Agora com todas as dependências do projeto e o Expo instalados em sua máquina, execute o comando:
 ```bash
@@ -39,5 +70,13 @@ ou utilizando o yarn
 - Utilização da lib _calendars_ para criar componente de calendário;
 - Utilização da lib json-server para criar uma api;
 - Utilização da lib axios para realização de requisições a uma api;
+- Criação de splash screen;
+- Criação de animações utilizando o _react reanimated_;
+- Criação de slider de imagens;
+- Animação com Lottie;
+- Aplicação de conceitos de UX/UI;
+- Utilização de worklet;
+
+
 
 ## Exemplo em execução
