@@ -78,5 +78,3 @@ ou utilizando o yarn
 - Utilização de worklet;
 
 
-
-## Exemplo em execução
