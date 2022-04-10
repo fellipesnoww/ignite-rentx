@@ -27,9 +27,9 @@ import {
     
 } from './styles';
 
-import { Load } from '../../components/Load';
 import { useTheme } from 'styled-components';
 import { RectButton, PanGestureHandler } from 'react-native-gesture-handler';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 type RootStackParamList = {
   CarDetails: undefined  
@@ -117,7 +117,7 @@ export function Home(){
             </HeaderContent>
           </Header>
           { loading 
-            ? <Load /> 
+            ? <LoadAnimation /> 
             : 
             <CarList
               data={cars}

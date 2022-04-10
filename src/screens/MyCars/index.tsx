@@ -4,12 +4,14 @@ import { FlatList } from 'react-native';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 import { BackButton } from '../../components/BackButton';
-import { Load } from '../../components/Load';
+import { AntDesign } from '@expo/vector-icons';
+
 
 import { Car } from '../../components/Car';
 import { CarDTO } from '../../dtos/CarDTO';
 import { api } from '../../services/api';
-import { AntDesign } from '@expo/vector-icons';
+import { LoadAnimation } from '../../components/LoadAnimation';
+
 
 import { 
     Container,
@@ -72,15 +74,14 @@ export function MyCars(){
                 />
                 <BackButton color={theme.colors.shape} onPress={handleBack}/>
                 <Title>
-                    Escolha uma{'\n'}
-                    data de início e {'\n'}
-                    fim do aluguel
+                  Seus agendamentos, {'\n'}
+                  estão aqui.
                 </Title>
 
                 <Subtitle>Conforto, segurança e praticidade.</Subtitle>               
             </Header>
           {loading ? (
-            <Load/>
+            <LoadAnimation/>
           ) : (
             <Content>
             <Appointments>
