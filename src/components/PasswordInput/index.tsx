@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextInputProps } from 'react-native';
 import {Feather} from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
-import { ChangePasswordVisibilityButton, Container, IconContainer, InputText } from './styles';
+import {  Container, IconContainer, InputText } from './styles';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
 interface Props extends TextInputProps{
