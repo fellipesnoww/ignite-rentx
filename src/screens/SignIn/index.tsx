@@ -13,6 +13,7 @@ import PasswordInput from "../../components/PasswordInput";
 import * as Yup from 'yup';
 
 import { Container, Footer, Form, Header, Subtitle, Title } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignIn(){
 
@@ -20,6 +21,12 @@ export default function SignIn(){
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigation = useNavigation();
+
+    function handleNewAccount(){
+        navigation.navigate('SignUpFirstStep');
+    }
 
     async function handleSignIn(){
         try {
@@ -92,7 +99,7 @@ export default function SignIn(){
                         />
                         <Button
                             title="Criar conta gratuita"
-                            onPress={handleSignIn}
+                            onPress={handleNewAccount}
                             enabled
                             loading={false}
                             color={theme.colors.background_secondary}
