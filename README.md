@@ -76,5 +76,6 @@ ou utilizando o yarn
 - Animação com Lottie;
 - Aplicação de conceitos de UX/UI;
 - Utilização de worklet;
+- Validação de formulário com o Yup;
 
 
