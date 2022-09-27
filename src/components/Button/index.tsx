@@ -6,9 +6,7 @@ import theme from '../../styles/theme';
 
 interface Props extends RectButtonProps{
     title: string;
-    color?: string;
-    onPress: () => void;
-    enabled?: boolean;
+    color?: string;    
     loading?: boolean;
     light?: boolean;
 }
