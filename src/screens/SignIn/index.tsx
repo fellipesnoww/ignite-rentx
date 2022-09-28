@@ -14,6 +14,7 @@ import * as Yup from 'yup';
 
 import { Container, Footer, Form, Header, Subtitle, Title } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../../hooks/auth";
 
 export default function SignIn(){
 
@@ -21,6 +22,7 @@ export default function SignIn(){
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {signIn} = useAuth();
 
     const navigation = useNavigation();
 
@@ -38,8 +40,10 @@ export default function SignIn(){
     
             await schema.validate({email, password});
 
-            //TODO: Fazer login
-            Alert.alert('TUDO CERTO!');
+            await signIn({
+                email,
+                password
+            });
         } catch (error) {
             if(error instanceof Yup.ValidationError){
                 Alert.alert('Opa', error.message);
