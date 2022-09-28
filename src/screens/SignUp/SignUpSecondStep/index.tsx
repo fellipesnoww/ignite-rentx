@@ -7,6 +7,7 @@ import Bullet from "../../../components/Bullet";
 import { Button } from "../../../components/Button";
 
 import PasswordInput from "../../../components/PasswordInput";
+import { api } from "../../../services/api";
 
 import { Container, Form, FormTitle, Header, Steps, Subtitle, Title } from "./styles";
 
@@ -29,7 +30,7 @@ function SignUpSecondStep(){
 
     const {user} = route.params as Params;
     
-    function handleRegister(){
+    async function handleRegister(){
       if(!password || !passwordConfirm){
         return Alert.alert('Opa', 'Informe uma senha e confirmação.');
       }
@@ -37,10 +38,19 @@ function SignUpSecondStep(){
       if(password != passwordConfirm){
         return Alert.alert('As senhas não são iguais.');
       }
-
-      //TODO: Enviar para a api
-      navigation.navigate('Confirmation', {nextScreenRoute: 'SignIn', title: 'Conta criada', message: `Agora é so fazer o login\ne aproveitar`})
-
+      
+      await api.post('users', {
+        name: user.name,
+        email: user.email,
+        driver_license: user.driverLicense,
+        password
+      })
+      .then(() => {
+        navigation.navigate('Confirmation', {nextScreenRoute: 'SignIn', title: 'Conta criada', message: `Agora é so fazer o login\ne aproveitar`});
+      })
+      .catch(() => {
+        Alert.alert('Opa', 'Não foi possível cadastrar')
+      });
     }
 
     function handleBack(){
