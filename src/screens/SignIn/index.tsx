@@ -28,6 +28,7 @@ export default function SignIn(){
         navigation.navigate('SignUpFirstStep');
     }
 
+  
     async function handleSignIn(){
         try {
             const schema = Yup.object().shape({
