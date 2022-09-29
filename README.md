@@ -65,7 +65,10 @@ ou utilizando o yarn
     - Criação de temas;
     - Acesso a propriedades;
     - Criação de componentes dinâmicos;
-- Navegação em Stack;
+- Navegação:
+    - Stack;
+    - Bottom Tabs;
+    - Mix de Bottom Tabs com Stack Navigation; 
 - Utilização de SVG;
 - Utilização da lib _calendars_ para criar componente de calendário;
 - Utilização da lib json-server para criar uma api;
