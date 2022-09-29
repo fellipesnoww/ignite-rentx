@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet, BackHandler } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation } from '@react-navigation/native';
 import { Car } from '../../components/Car';
@@ -94,14 +94,7 @@ export function Home(){
 
     fetchCars();
     
-  }, []);
-
-
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", () => {
-      return true;
-    })
-  },[]);
+  }, []);  
 
   return (
       <Container>
@@ -131,7 +124,7 @@ export function Home(){
             />
           }
 
-          <PanGestureHandler
+          {/* <PanGestureHandler
             onGestureEvent={onGestureEvent}
           >
             <Animated.View style={[
@@ -146,7 +139,7 @@ export function Home(){
                 <Ionicons name="ios-car-sport" size={32} color={theme.colors.shape}/>
               </ButtonAnimated>          
             </Animated.View>
-          </PanGestureHandler>
+          </PanGestureHandler> */}
           
       </Container>
   );

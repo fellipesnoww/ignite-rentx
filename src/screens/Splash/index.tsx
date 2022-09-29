@@ -50,7 +50,7 @@ export function Splash() {
   const navigation = useNavigation();
 
   function startApp(){
-    navigation.navigate('Home');
+    navigation.navigate('SignIn');
   }
 
   useEffect(() => {
