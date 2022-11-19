@@ -87,6 +87,5 @@ ou utilizando o yarn
     - Criação de schemas;
     - Busca, adição, atualização e remoção de dados
     - Sincronismo de dados
-
-
-
+- Utilização do ImagePicker para seleção de imagens do dispositivo do usuario;
+- Utilização da FastImage para realização de cache de imagens;
