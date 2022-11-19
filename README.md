@@ -80,5 +80,13 @@ ou utilizando o yarn
 - Aplicação de conceitos de UX/UI;
 - Utilização de worklet;
 - Validação de formulário com o Yup;
+- Planejamento de aplicações com funções offline;
+- Utilização do WatermelonDB para armazenamentos de dados:
+    - Criação de banco;
+    - Criação de models;
+    - Criação de schemas;
+    - Busca, adição, atualização e remoção de dados
+    - Sincronismo de dados
+
 
 
