@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar, StyleSheet } from 'react-native';
+import {useNetInfo} from '@react-native-community/netinfo';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation } from '@react-navigation/native';
 import { Car } from '../../components/Car';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { synchronize } from '@nozbe/watermelondb/sync';
+
+
+
+
 import { api } from '../../services/api';
 import Logo from '../../assets/logo.svg';
 import { CarDTO } from '../../dtos/CarDTO';
@@ -30,6 +36,8 @@ import {
 import { useTheme } from 'styled-components';
 import { RectButton, PanGestureHandler } from 'react-native-gesture-handler';
 import { LoadAnimation } from '../../components/LoadAnimation';
+import { database } from '../../database';
+import { Car as ModelCar } from '../../database/models/Car';
 
 type RootStackParamList = {
   CarDetails: undefined  
@@ -38,12 +46,12 @@ type RootStackParamList = {
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CarDetails'> ;
 
 export function Home(){
-  const [cars, setCars] = useState<CarDTO[]>([]);
+  const [cars, setCars] = useState<ModelCar[]>([]);
   const [loading, setLoading] = useState(true);
 
   const navigation = useNavigation<HomeScreenNavigationProp>();    
   const theme = useTheme();
-
+  const netInfo = useNetInfo();
   const positionX = useSharedValue(0);
   const positionY = useSharedValue(0);
 
@@ -76,16 +84,38 @@ export function Home(){
     navigation.navigate('MyCars');
   }
 
-  function handleCarDetails(car: CarDTO) {    
+  function handleCarDetails(car: ModelCar) {    
     navigation.navigate('CarDetails', { car });
+  }
+
+  async function offlineSynchronize() {
+    //database: qual banco é pra sincronizar (realiza a conexao)
+    //pullChanges: função que busca atualizações no backend (faz o processo de fila para atualização)
+    //pushChanges: função que vai enviar pro backend as ações que o usuario realizou quando estava offline
+    await synchronize({
+      database,
+      pullChanges: async ({lastPulledAt}) => {
+        const {data} = await api.get(`cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`); //Busca carros atualizados com base na ultima sync
+        
+        const { changes, lastestVersion } = data;
+        return { changes, timestamp: lastestVersion }
+      },
+      pushChanges: async ({changes}) => {
+        const user = changes.users;
+        await api.post('/users/sync', user);
+      }
+    });
   }
   
   useEffect(() => {
     let isMounted = true;
     async function fetchCars(){
       try{
-        const response = await api.get('/cars');
-        if(isMounted) setCars(response.data);
+        const carCollection = database.get<ModelCar>('cars');
+        const cars = await carCollection.query().fetch();
+        if(isMounted){
+          setCars(cars);
+        }
       }catch(error){
         console.log(error);
       }finally{
@@ -98,6 +128,16 @@ export function Home(){
       isMounted = false;
     }
   }, []);  
+
+  useEffect(() => {
+    if(netInfo.isConnected){
+      console.log('Online');
+      offlineSynchronize();
+    } else {
+      console.log('Offline');
+    }
+
+  },[netInfo.isConnected])
 
   return (
       <Container>
